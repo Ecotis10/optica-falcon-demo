@@ -1,0 +1,10 @@
+# Repo público de la demo: SOLO se sube la página.
+# Todo lo demás (notas del cliente, kit, briefs, videos fuente) queda fuera.
+/*
+!/.gitignore
+!/.nojekyll
+!/index.html
+!/css/
+!/js/
+!/assets/
+/assets/*.mp4
