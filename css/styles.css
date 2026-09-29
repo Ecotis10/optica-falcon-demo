@@ -45,7 +45,9 @@
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* Sin scroll-behavior: smooth: rompe las mediciones de ScrollTrigger al cambiar el tamaño
+   de la ventana (el hero quedaba mal fijado). El scroll suave de los enlaces va en main.js. */
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--paper);
@@ -438,7 +440,6 @@ p { margin: 0; }
 @media (min-width: 768px) { .wa-float { right: var(--s-8); bottom: var(--s-8); } }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 

@@ -39,6 +39,23 @@
     });
   }
 
+  /* ---------- Scroll suave de los enlaces internos (#seccion) ----------
+     Se hace aquí y no con scroll-behavior en CSS, que desajusta el hero fijo. */
+  function initAnchors() {
+    document.addEventListener("click", function (e) {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute("href");
+      const target = id.length > 1 && document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      const navH = document.querySelector("[data-nav]").offsetHeight;
+      const y = target.getBoundingClientRect().top + window.scrollY - navH;
+      window.scrollTo({ top: y, behavior: reduceMotion ? "auto" : "smooth" });
+      history.pushState(null, "", id);
+    });
+  }
+
   /* ---------- Catálogo ---------- */
   const SHAPES = {
     round: '<circle cx="55" cy="40" r="27"/><circle cx="145" cy="40" r="27"/><path d="M82 36 Q100 26 118 36M28 34 L8 30M172 34 L192 30"/>',
@@ -374,6 +391,7 @@
   });
   wireWhatsApp(document);
   initNav();
+  initAnchors();
   initCatalog();
   initCountdown();
   initMotion();
